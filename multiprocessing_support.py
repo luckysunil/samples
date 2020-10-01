@@ -19,11 +19,12 @@ def receiver(conn):
 	function to print the messages received from other 
 	end of pipe 
 	"""
-	while 1: 
-		msg = conn.recv() 
-		if msg == "END": 
-			break
-		print("Received the message: {}".format(msg)) 
+
+    msg = conn.recv() 
+	if msg == "END":
+        print(">>>>>>", msg)
+        
+	print("Received the message: {}".format(msg)) 
 
 def worker(conn, num):
     """thread worker function"""
@@ -31,7 +32,5 @@ def worker(conn, num):
     while True:
         print('Worker:', num)
         receiver(conn)
-
-        time.sleep(2)
         
     return
