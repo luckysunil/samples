@@ -16,10 +16,11 @@ g_queue = None
 
 def start_ticker():
     msgs = ["Hi", "How are youe", "I am doing Great"]
-    
+    li = ["12345", "6789", "0123"]
+
     g_queue = Queue()
     
-    p = Process(target=mp_queue_sample_support.start_queue, args=((g_queue),))
+    p = Process(target=mp_queue_sample_support.start_queue, args=((g_queue), li))
     p.daemon = True
     p.start()
     

@@ -27,7 +27,9 @@ def put_cmd(queue, cmd):
     ## Write to the queue
     queue.put(cmd)             # Write 'count' numbers into the queue
     
-def start_queue(queue):
+def start_queue(queue, li):
+
+    print(li)
     
     while True:
         
@@ -48,3 +50,4 @@ def start_queue(queue):
         
         #time.sleep(1)
         print("waiting...")
+    
