@@ -9,13 +9,18 @@ Created on Sun Oct  4 13:22:02 2020
 from multiprocessing import Process, Queue
 import time
 import os
-
+import datetime
 
 def get_cmd(queue):
     ## Read from the queue; this will be spawned as a separate Process
-    msg = queue.get()         # Read from the queue and do nothing
-    print(msg)
-    return msg
+    try:
+        msg = queue.get(block=False)         # Read from the queue and do nothing
+        print("<<<", msg)
+        return msg
+    except Exception as e:
+        print("Exception")
+        print(e)
+        return None
 
 
 def put_cmd(queue, cmd):
@@ -25,10 +30,21 @@ def put_cmd(queue, cmd):
 def start_queue(queue):
     
     while True:
-        msg = get_cmd(queue)
+        
+        ts1 = datetime.datetime.now().timestamp()
+        print("ts1:", ts1)
 
-        if (msg == 'DONE'):
-            break
+        msg = get_cmd(queue)
+        ts2 = datetime.datetime.now().timestamp()
+        print("ts2:", ts2)
+
+        diff = ts2 - ts1
+        print("diff:", diff)
+
+
+        if msg:
+            if (msg == 'END'):
+                break
         
         #time.sleep(1)
         print("waiting...")

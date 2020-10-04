@@ -15,7 +15,7 @@ g_queue = None
 
 
 def start_ticker():
-    msgs = ["Hi", "How are youe", "I am doing Great", "END"]
+    msgs = ["Hi", "How are youe", "I am doing Great"]
     
     g_queue = Queue()
     
@@ -28,10 +28,14 @@ def start_ticker():
     print("Sending data to new process:", p.pid)
     
     for msg in msgs:
+        print(">>>>", msg)
         mp_queue_sample_support.put_cmd(g_queue, msg)
         
-    time.sleep(2)
-    
+    time.sleep(1)
+
+    print(">>>>", "END")
+    mp_queue_sample_support.put_cmd(g_queue, "END")
+
     g_queue.close()
     
     p.terminate()
