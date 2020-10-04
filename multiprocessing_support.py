@@ -4,6 +4,7 @@ Created on Thu Oct  1 10:31:14 2020
 
 @author: lucky
 """
+import time
 
 def sender(conn, msgs): 
     """ 
@@ -33,5 +34,7 @@ def worker(conn, num):
     while True:
         print('Worker:', num)
         receiver(conn)
+        time.sleep(1)
+        print("waiting...")
         
     return
