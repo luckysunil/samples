@@ -22,7 +22,7 @@ def receiver(conn):
     end of pipe 
     """
 
-    msg = conn.recv() 
+    msg = conn.recv()
     if(msg == "END"):
         print(">>>>>>", msg)
 
