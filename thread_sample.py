@@ -31,6 +31,9 @@ class thread_handler(threading.Thread):
     def terminate(self):
         print("Terminate " + self.name)
         self._running = False
+        
+    def check_param(self, param):
+        print("Param:", param)
 
 def start_tick(run_type):
     print("start_tick:", run_type)
@@ -43,7 +46,8 @@ def start_tick(run_type):
 th1 = thread_handler(1, "test", 3)
 th1.start()
 print("th1", th1.is_alive())
-
+name = [1234, 5678, 123]
+th1.check_param(name)
 print("th1>>", th1.is_alive())
 #th1.join()
 th2 = thread_handler(1, "test2", 0)
